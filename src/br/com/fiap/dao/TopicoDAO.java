@@ -47,15 +47,10 @@ public class TopicoDAO {
 		List<Topico> lista = new ArrayList<Topico>();
 
 		stmt = con.prepareStatement("select * from t_dbc_topico where ds_nome_criador like ? ");
-		stmt.setString(1, nome+ "%");
+		stmt.setString(1, nome + "%");
 		rs = stmt.executeQuery();
 		while (rs.next()) {
-			lista.add(new Topico
-					(
-					rs.getInt("id_topico"),
-					rs.getString("ds_nome_criador"),
-					rs.getString("nm_topico")
-					));
+			lista.add(new Topico(rs.getInt("id_topico"), rs.getString("ds_nome_criador"), rs.getString("nm_topico")));
 		}
 
 		rs.close();
@@ -76,10 +71,10 @@ public class TopicoDAO {
 		stmt.setInt(1, numero);
 		return stmt.executeUpdate();
 	}
-	 public void fechar()throws Exception{
-			stmt.close();
-			con.close();
-		}
 
+	public void fechar() throws Exception {
+		stmt.close();
+		con.close();
+	}
 
 }

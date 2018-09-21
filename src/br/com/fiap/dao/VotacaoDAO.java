@@ -64,7 +64,7 @@ public class VotacaoDAO {
 		return stmt.executeUpdate();
 	}
 
-	public int AlterarVotacao(Votacao votacao) throws Exception {
+	public int alterarVotacao(Votacao votacao) throws Exception {
 		stmt = con.prepareStatement("update t_dbc_votacao set dt_termino=? where id_Votacao = ?");
 		stmt.setString(1, votacao.getDtTermino());
 		stmt.setInt(2, votacao.getIdVotacao());

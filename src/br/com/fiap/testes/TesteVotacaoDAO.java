@@ -18,7 +18,6 @@ public static void main(String[] args) {
 		Evento evento = new Evento();
 		Usuario us = new Usuario();
 		EventoDAO eventodao = new EventoDAO();
-		UsuarioDAO us = new UsuarioDAO();
 		
 		//criar votacao
 		
