@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import br.com.fiap.beans.Endereco;
-import br.com.fiap.beans.Usuario;
 import br.com.fiap.conexao.Conexao;
 
 public class EnderecoDAO {
@@ -32,20 +31,7 @@ public class EnderecoDAO {
 	}
 	
 	
-	public String atualizaUsuario(Usuario usuario)throws Exception{
-		stmt = con.prepareStatement
-				("UPDATE T_DBC_USUARIO SET ds_senha = ?,  ds_nome = ?, nr_cpf = ?, dt_nascimento = ?, ds_email = ?, nr_fone = ?, id_endereco = ? WHERE ID_USUARIO = ?");
-		stmt.setString(1, usuario.getDsSenha());
-		stmt.setString(2, usuario.getDsNome());
-		stmt.setString(3, usuario.getCpf());
-		stmt.setString(4, usuario.getDtNascimento());
-		stmt.setString(5, usuario.getDsEmail());
-		stmt.setString(6, usuario.getFone());
-		stmt.setString(7, usuario.getEndereco().getAll());
-		stmt.setInt(8, usuario.getIdUsuario());
-		stmt.executeUpdate();
-		return "Dados do usuario atualizados com sucesso";
-	}
+	
 	
 	public Endereco consultarId(int numero)throws Exception{
 		stmt = con.prepareStatement
@@ -72,10 +58,7 @@ public class EnderecoDAO {
 		stmt.setString(2, end.getCidade());
 		stmt.setInt(3, end.getNumero());
 		stmt.setString(4, end.getEstado());
-		stmt.setString(5, end.getComplemento());      
-		
-		
-		
+		stmt.setString(5, end.getComplemento());   
 		stmt.setInt(6, end.getIdEndereco());
 		return  stmt.executeUpdate();
 	}

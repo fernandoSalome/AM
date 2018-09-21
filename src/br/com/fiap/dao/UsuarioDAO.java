@@ -99,12 +99,18 @@ private  ResultSet rs;
     	 rs.close();
  		return lista;
       }
-      public int editarSenha(int numero)throws Exception{
-    	  stmt  = con.prepareStatement
-    			  ("UPDATE T_DBC_USUARIO SET DS_SENHA WHERE id_usuario = ?");
-    	  stmt.setInt(1, numero);
-    	  return stmt.executeUpdate();
-      }
+      public int atualizaUsuario(Usuario usuario)throws Exception{
+  		stmt = con.prepareStatement
+  				("UPDATE T_DBC_USUARIO SET ds_senha = ?,  ds_nome = ?, nr_cpf = ?, dt_nascimento = ?, ds_email = ?, nr_fone = ? WHERE ID_USUARIO = ?");
+  		stmt.setString(1, usuario.getDsSenha());
+  		stmt.setString(2, usuario.getDsNome());
+  		stmt.setString(3, usuario.getCpf());
+  		stmt.setString(4, usuario.getDtNascimento());
+  		stmt.setString(5, usuario.getDsEmail());
+  		stmt.setString(6, usuario.getFone());  		
+  		stmt.setInt(7, usuario.getIdUsuario());  		
+  		return stmt.executeUpdate();
+  	}
       public int deletarUsuario(int numero)throws Exception{
     	  stmt = con.prepareStatement
     			  ("DELETE FROM T_DBC_USUARIO WHERE ID_USUARIO = ?");

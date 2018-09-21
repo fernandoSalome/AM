@@ -44,7 +44,7 @@ public class EntregaDAO {
 							),
 					rs.getString("DT_ENTREGA"),
 					rs.getString("NM_REMETENTE"),
-					rs.getString("DS_PACCOTE"),
+					rs.getString("DS_PACOTE"),
 					rs.getInt("QT_ENTREGAS_ESPERA"));			
 		}
 		rs.close();
@@ -71,10 +71,14 @@ public class EntregaDAO {
 		rs.close();
 		return lista;
 	}
-	public int atualizarDescricao(int numero)throws Exception{
+	public int atualizarEntrega(Entrega pct)throws Exception{
 		stmt = con.prepareStatement
- 				("UPDATE T_DBC_ENTREGA SET  ds_pacote WHERE ID_ENTREGA = ?");
-		stmt.setInt(1, numero);
+ 				("UPDATE T_DBC_ENTREGA SET  dt_entrega=?, ds_pacote=?, nm_remetente=?, qt_entregas_espera=? WHERE ID_ENTREGA = ?");
+		stmt.setString(1, pct.getDtEntrega());
+		stmt.setString(2, pct.getDsPacote());
+		stmt.setString(3, pct.getRemetente());
+		stmt.setInt(4, pct.getEntregasEspera());
+		stmt.setInt(5, pct.getIdEntrega());
 		return stmt.executeUpdate();
 		}
 	public int deletar(int numero)throws Exception{

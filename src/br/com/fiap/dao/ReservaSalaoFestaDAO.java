@@ -49,10 +49,12 @@ public class ReservaSalaoFestaDAO {
                    rs.close();		
            		return rsv;
          }
-        public int atualizarDtReserva(int numero)throws Exception{
+        public int atualizarDtReserva(ReservaSalaoFesta reserva)throws Exception{
         	stmt = con.prepareStatement
-        			("UPDATE T_DBC_ReservaSalaoFesta SET dt_reserva WHERE ID_ReservaSalaoFesta");
-        	stmt.setInt(1, numero);
+        			("UPDATE T_DBC_ReservaSalaoFesta SET dt_reserva=?, dt_hora_reserva=? WHERE id_reserva=?");
+        	stmt.setString(1, reserva.getDtReserva());
+        	stmt.setString(2, reserva.getDtHoraReserva());
+        	stmt.setInt(3, reserva.getIdReserva());
         	return stmt.executeUpdate();
         }
         public int deletar(int numero)throws Exception{
