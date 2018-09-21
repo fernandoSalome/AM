@@ -59,6 +59,19 @@ public class UsuarioDAO {
 		return user;
 	}
 
+	public int atualizaUsuario(Usuario usuario) throws Exception {
+		stmt = con.prepareStatement(
+				"UPDATE T_DBC_USUARIO SET ds_senha = ?,  ds_nome = ?, nr_cpf = ?, dt_nascimento = ?, ds_email = ?, nr_fone = ? WHERE ID_USUARIO = ?");
+		stmt.setString(1, usuario.getDsSenha());
+		stmt.setString(2, usuario.getDsNome());
+		stmt.setString(3, usuario.getCpf());
+		stmt.setString(4, usuario.getDtNascimento());
+		stmt.setString(5, usuario.getDsEmail());
+		stmt.setString(6, usuario.getFone());
+		stmt.setInt(7, usuario.getIdUsuario());
+		return stmt.executeUpdate();
+	}
+
 	public List<Usuario> consultarPorNome(String nome) throws Exception {
 		List<Usuario> lista = new ArrayList<Usuario>();
 		stmt = con.prepareStatement("SELECT * FROM T_DBC_USUARIO INNER JOIN T_DBC_ENDERECO ON"

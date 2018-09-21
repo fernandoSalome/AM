@@ -44,9 +44,10 @@ public class EnderecoDAO {
 		stmt.executeUpdate();
 		return "Dados do usuario atualizados com sucesso";
 	}
-
-	public Endereco consultarId(int numero) throws Exception {
-		stmt = con.prepareStatement("Select * from t_dbc_endereco where id_endereco = ?");
+	
+	public Endereco consultarId(int numero)throws Exception{
+		stmt = con.prepareStatement
+				("Select * from t_dbc_endereco where id_endereco = ?");
 		stmt.setInt(1, numero);
 		rs = stmt.executeQuery();
 		Endereco end = new Endereco();
@@ -71,7 +72,6 @@ public class EnderecoDAO {
 		stmt.setInt(3, end.getNumero());
 		stmt.setString(4, end.getEstado());
 		stmt.setString(5, end.getComplemento());
-
 		stmt.setInt(6, end.getIdEndereco());
 		return stmt.executeUpdate();
 	}

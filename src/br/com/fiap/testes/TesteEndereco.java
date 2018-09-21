@@ -52,7 +52,7 @@ public class TesteEndereco {
 		    			
 						
 						
-						/*System.out.println(dao.apagar(Integer.parseInt(JOptionPane.showInputDialog("ID"))));*/
+						/*System.out.println(dao.apagar(.parseInt(JOptionPane.showInputDialog("ID"))));*/
 		    			obj= dao.consultarId(Integer.parseInt(JOptionPane.showInputDialog("ID")));
 		    			obj.setLogradouro(JOptionPane.showInputDialog("Trocar Endereco"));
 		    			obj.setCidade(JOptionPane.showInputDialog("Trocar Cidade"));

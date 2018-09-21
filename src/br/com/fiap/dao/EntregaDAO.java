@@ -41,6 +41,18 @@ public class EntregaDAO {
 		if (rs.next()) {
 			pct.setAll(rs.getInt("ID_ENTREGA"), new Usuario(rs.getInt("ID_USUARIO")), rs.getString("DT_ENTREGA"),
 					rs.getString("NM_REMETENTE"), rs.getString("DS_PACCOTE"), rs.getInt("QT_ENTREGAS_ESPERA"));
+		rs=stmt.executeQuery();
+		Entrega pct = new Entrega();
+		if(rs.next()) {
+			pct.setAll(
+					rs.getInt("ID_ENTREGA"),
+					new Usuario(
+							rs.getInt("ID_USUARIO")
+							),
+					rs.getString("DT_ENTREGA"),
+					rs.getString("NM_REMETENTE"),
+					rs.getString("DS_PACOTE"),
+					rs.getInt("QT_ENTREGAS_ESPERA"));			
 		}
 		rs.close();
 		return pct;
@@ -61,9 +73,14 @@ public class EntregaDAO {
 		return lista;
 	}
 
-	public int atualizarDescricao(int numero) throws Exception {
-		stmt = con.prepareStatement("UPDATE T_DBC_ENTREGA SET  ds_pacote WHERE ID_ENTREGA = ?");
-		stmt.setInt(1, numero);
+	public int atualizarEntrega(Entrega pct)throws Exception{
+		stmt = con.prepareStatement
+ 				("UPDATE T_DBC_ENTREGA SET  dt_entrega=?, ds_pacote=?, nm_remetente=?, qt_entregas_espera=? WHERE ID_ENTREGA = ?");
+		stmt.setString(1, pct.getDtEntrega());
+		stmt.setString(2, pct.getDsPacote());
+		stmt.setString(3, pct.getRemetente());
+		stmt.setInt(4, pct.getEntregasEspera());
+		stmt.setInt(5, pct.getIdEntrega());
 		return stmt.executeUpdate();
 	}
 

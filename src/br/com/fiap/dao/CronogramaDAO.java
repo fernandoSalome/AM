@@ -51,9 +51,16 @@ public class CronogramaDAO {
 		rs.close();
 		return lista;
 	}
+		
+	public int editar(Cronograma cr) throws Exception {
+		stmt = con.prepareStatement("UPDATE T_DBC_CRONOGRAMA SET DT_DATA=? WHERE ID_CRONOGRAMA =?");
+		stmt.setString(1, cr.getDtData());
+		stmt.setInt(2, cr.getIdCronograma());
+		return stmt.executeUpdate();
+	}
 
-	public int editarData(int numero) throws Exception {
-		stmt = con.prepareStatement("UPDATE T_DBC_CRONOGRAMA SET DT_DATE WHERE ID_CRONOGRAMA =?");
+	public int apagar(int numero) throws Exception {
+		stmt = con.prepareStatement("DELETE FROM T_DBC_CRONOGRAMA WHERE ID_CRONOGRAMA =?");
 		stmt.setInt(1, numero);
 		return stmt.executeUpdate();
 	}
