@@ -38,11 +38,6 @@ public class EntregaDAO {
 		stmt.setInt(1, numero);
 		rs = stmt.executeQuery();
 		Entrega pct = new Entrega();
-		if (rs.next()) {
-			pct.setAll(rs.getInt("ID_ENTREGA"), new Usuario(rs.getInt("ID_USUARIO")), rs.getString("DT_ENTREGA"),
-					rs.getString("NM_REMETENTE"), rs.getString("DS_PACCOTE"), rs.getInt("QT_ENTREGAS_ESPERA"));
-		rs=stmt.executeQuery();
-		Entrega pct = new Entrega();
 		if(rs.next()) {
 			pct.setAll(
 					rs.getInt("ID_ENTREGA"),
